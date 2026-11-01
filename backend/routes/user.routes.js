@@ -1,0 +1,10 @@
+import express from "express"
+import isAuth from "../middlewares/isAuth.js"
+import { editProfile, getCurrentUser, getOtherUser } from "../controllers/user.controllers.js"
+import { upload } from "../middlewares/multer.js"
+
+const userRouter=express.Router()
+userRouter.get("/current",isAuth,getCurrentUser)
+userRouter.put("/profile",isAuth,upload.single("image"),editProfile)
+userRouter.get("/others",isAuth,getOtherUser)
+export default userRouter 
